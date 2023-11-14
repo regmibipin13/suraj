@@ -21,18 +21,18 @@ class ReadingScreen extends StatelessWidget {
           "Readings",
           style: CustomTextStyles.f16W600(),
         ),
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Get.back();
+        //   },
+        //   child: const Padding(
+        //     padding: EdgeInsets.only(left: 20),
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        // ),
       ),
       body: SafeArea(
         child: RefreshIndicator(

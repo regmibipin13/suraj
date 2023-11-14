@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/models/reading_types.dart';
 import 'package:user_app/models/readings.dart';
@@ -21,6 +23,7 @@ class HomeScreenController extends GetxController {
   }
 
   RxBool showActualValue = true.obs;
+  ImagePicker picker = ImagePicker();
 
   void toggleVisibility() {
     showActualValue.value = !showActualValue.value;
@@ -33,6 +36,19 @@ class HomeScreenController extends GetxController {
   final selectedTable = ReadingTypes().obs;
   void setSelectedTable(ReadingTypes table) {
     selectedTable.value = table;
+  }
+
+  var imageBytes = Rxn<Uint8List>();
+
+  void onPickImage() {
+    try {
+      var pickedFile = picker.pickImage(source: ImageSource.gallery);
+      pickedFile.then((value) async {
+        if (value == null) return;
+
+        imageBytes.value = await value.readAsBytes();
+      });
+    } catch (e) {}
   }
 
   startChooseDate(BuildContext context) async {
@@ -141,6 +157,7 @@ class HomeScreenController extends GetxController {
     print(readingTypeId);
     print(readingTypeId);
     await ReadingListRepo.addReadings(
+      image: imageBytes.value,
       startDate: startDateController.text,
       id: id,
       readlingValue: readingValueController.text,

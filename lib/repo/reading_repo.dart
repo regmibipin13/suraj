@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:get/get.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:user_app/models/reading_types.dart';
 import 'package:user_app/models/readings.dart';
 import 'package:user_app/models/remarks.dart';
@@ -107,6 +110,7 @@ class ReadingListRepo {
   static Future<void> addReadings(
       {required String startDate,
       required String id,
+      Uint8List? image,
       required String readlingValue,
       required String remarks,
       required String readingTypeId,
@@ -114,7 +118,7 @@ class ReadingListRepo {
       required Function(String message) onError}) async {
     try {
       var headers = {
-        "Accept": "application/json",
+        "Accept": "multipart/form-data",
       };
       var body = {
         "object_id": id,
@@ -124,14 +128,27 @@ class ReadingListRepo {
         "remarks": remarks,
       };
       var url = Uri.parse(Api.addReadings);
-      log(body.toString());
-      log(url.toString());
-      http.Response response = await http.post(
-        url,
-        headers: headers,
-        body: body,
-      );
-      dynamic data = json.decode(response.body);
+      // log(body.toString());
+      // log(url.toString());
+      var request = http.MultipartRequest('POST', url);
+      request.headers.addAll(headers);
+
+      request.fields.addAll(body);
+
+      if (image != null) {
+        print('image is not null');
+        request.files.add(http.MultipartFile.fromBytes('image', image!,
+            filename: 'image.jpg'));
+      }
+
+      var response = await request.send();
+      var data = jsonDecode(await response.stream.bytesToString());
+      // await http.post(
+      //   url,
+      //   headers: headers,
+      //   body: body,
+      // );
+      // dynamic data = json.decode(response.body);
       print(data);
       if (response.statusCode == 200) {
         onSuccess();

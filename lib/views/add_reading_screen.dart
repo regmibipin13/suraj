@@ -54,6 +54,7 @@ class AddReadingScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
               height: 24,
@@ -65,6 +66,7 @@ class AddReadingScreen extends StatelessWidget {
                   horizontal: 22,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextField(
                       hint: "Select date",
@@ -98,7 +100,7 @@ class AddReadingScreen extends StatelessWidget {
                     ),
                     DropdownButtonFormField<ReadingTypes>(
                       decoration: const InputDecoration(
-                        labelText: 'Select a remark',
+                        labelText: 'Select a table',
                         border: OutlineInputBorder(),
                       ),
                       value: c.selectedReadingType.value,
@@ -117,7 +119,7 @@ class AddReadingScreen extends StatelessWidget {
                     ),
                     DropdownButtonFormField<Remarks>(
                       decoration: const InputDecoration(
-                        labelText: 'Select a table',
+                        labelText: 'Select a remark',
                         border: OutlineInputBorder(),
                       ),
                       value: c.selectedRemark.value,
@@ -131,6 +133,66 @@ class AddReadingScreen extends StatelessWidget {
                         c.selectedRemark.value = selectedTable!;
                       },
                     ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    //select image
+                    const Text(
+                      'Select Image (Optional)',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    Obx(
+                      () => c.imageBytes.value != null &&
+                              c.imageBytes.value!.isNotEmpty
+                          ? Stack(
+                              children: [
+                                SizedBox(
+                                  height: 150,
+                                  width: double.infinity,
+                                  child: Image.memory(
+                                    c.imageBytes.value!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      c.imageBytes.value = null;
+                                    },
+                                    icon: const Icon(Icons.close),
+                                    color: Colors.red,
+                                    iconSize: 30,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : GestureDetector(
+                              onTap: c.onPickImage,
+                              child: Container(
+                                height: 150,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.add_a_photo_outlined,
+                                  size: 50,
+                                ),
+                              ),
+                            ),
+                    )
                   ],
                 ),
               ),

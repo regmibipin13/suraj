@@ -22,18 +22,18 @@ class ObjectDetailScreen extends StatelessWidget {
         // backgroundColor: theme.colorScheme.tertiary,
         elevation: 5,
         shadowColor: AppColors.shadowColor,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Get.back();
+        //   },
+        //   child: const Padding(
+        //     padding: EdgeInsets.only(left: 20),
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        // ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
