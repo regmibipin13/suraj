@@ -12,9 +12,7 @@ import 'package:http/http.dart' as http;
 import '../controller/core_controller.dart';
 
 class ReadingListRepo {
-
   static Future<void> getReadingList({
-
     required String id,
     required Function(List<ReadingList> readings) onSuccess,
     required Function(String message) onError,

@@ -136,7 +136,9 @@ class HomeScreenController extends GetxController {
         allRemarks.first.name.toString();
     String readingTypeId =
         selectedRemarks.value?.id.toString() ?? allRemarks.first.id.toString();
-
+    print(remarks);
+    print(readingTypeId);
+    print(readingTypeId);
     await ReadingListRepo.addReadings(
       startDate: startDateController.text,
       id: id,
@@ -151,7 +153,7 @@ class HomeScreenController extends GetxController {
       },
       onError: ((message) {
         loading.value = false;
-        CustomSnackBar.error(title: "Booking", message: message);
+        CustomSnackBar.error(title: "Error", message: message);
       }),
     );
   }
