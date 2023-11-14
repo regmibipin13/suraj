@@ -113,10 +113,10 @@ class HomeScreenController extends GetxController {
   }
 
   RxList<Remarks> allRemarks = <Remarks>[].obs;
-  final selectedRemarks = Remarks().obs;
-  void setSelectedRemarks(Remarks remark) {
-    selectedRemarks.value = remark;
-  }
+
+  //selectedRemark
+
+  var selectedRemark = Rxn<Remarks>();
 
   getAllRemarks() async {
     loading.value = true;
@@ -134,7 +134,7 @@ class HomeScreenController extends GetxController {
 
   addReading(String id) async {
     loading.value = true;
-    String remarks = selectedRemarks.value?.name.toString() ??
+    String remarks = selectedRemark.value?.name.toString() ??
         allRemarks.first.name.toString();
     String readingTypeId = selectedReadingType.value?.id.toString() ?? '';
     print(remarks);

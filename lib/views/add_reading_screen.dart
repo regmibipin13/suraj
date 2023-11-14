@@ -98,7 +98,7 @@ class AddReadingScreen extends StatelessWidget {
                     ),
                     DropdownButtonFormField<ReadingTypes>(
                       decoration: const InputDecoration(
-                        // labelText: 'Select a table',
+                        labelText: 'Select a remark',
                         border: OutlineInputBorder(),
                       ),
                       value: c.selectedReadingType.value,
@@ -117,10 +117,10 @@ class AddReadingScreen extends StatelessWidget {
                     ),
                     DropdownButtonFormField<Remarks>(
                       decoration: const InputDecoration(
-                        // labelText: 'Select a table',
+                        labelText: 'Select a table',
                         border: OutlineInputBorder(),
                       ),
-                      value: c.allRemarks.first,
+                      value: c.selectedRemark.value,
                       items: c.allRemarks
                           .map((table) => DropdownMenuItem(
                                 value: table,
@@ -128,7 +128,7 @@ class AddReadingScreen extends StatelessWidget {
                               ))
                           .toList(),
                       onChanged: (selectedTable) {
-                        c.setSelectedRemarks(selectedTable!);
+                        c.selectedRemark.value = selectedTable!;
                       },
                     ),
                   ],
