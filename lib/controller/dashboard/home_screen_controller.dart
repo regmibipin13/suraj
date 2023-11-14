@@ -96,6 +96,8 @@ class HomeScreenController extends GetxController {
 
   RxList<ReadingTypes> allTypes = <ReadingTypes>[].obs;
 
+  var selectedReadingType = Rxn<ReadingTypes>();
+
   getAllTypes() async {
     loading.value = true;
     await ReadingListRepo.getReadingTypes(
@@ -134,8 +136,7 @@ class HomeScreenController extends GetxController {
     loading.value = true;
     String remarks = selectedRemarks.value?.name.toString() ??
         allRemarks.first.name.toString();
-    String readingTypeId =
-        selectedRemarks.value?.id.toString() ?? allRemarks.first.id.toString();
+    String readingTypeId = selectedReadingType.value?.id.toString() ?? '';
     print(remarks);
     print(readingTypeId);
     print(readingTypeId);

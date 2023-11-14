@@ -116,13 +116,13 @@ class ReadingListRepo {
       var headers = {
         "Accept": "application/json",
       };
-      var body = json.encode({
+      var body = {
         "object_id": id,
         "reading_type_id": readingTypeId,
         "reading_value": readlingValue,
         "visit_date": startDate,
         "remarks": remarks,
-      });
+      };
       var url = Uri.parse(Api.addReadings);
       log(body.toString());
       log(url.toString());

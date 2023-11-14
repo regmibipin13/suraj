@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:user_app/controller/dashboard/home_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/utils/colors.dart';
@@ -169,6 +170,19 @@ class ObjectDetailScreen extends StatelessWidget {
           children: [
             Flexible(
                 child: CustomElevatedButton(
+              backGroundColor: Colors.green,
+              onTap: () {
+                Uri mapLocation = Uri.parse(
+                    'https://www.google.com/maps/search/?api=1&query=${objlist.googleAddress}');
+                launchUrl(mapLocation);
+              },
+              title: "Go to Map",
+            )),
+            const SizedBox(
+              width: 10,
+            ),
+            Flexible(
+                child: CustomElevatedButton(
               onTap: () {
                 Get.to(() => AddReadingScreen(
                       obj: objlist,
@@ -185,7 +199,9 @@ class ObjectDetailScreen extends StatelessWidget {
                 c.readingsListDetail.clear();
                 c.getAllReadingList(objlist.id.toString());
 
-                Get.to(() => ReadingScreen());
+                Get.to(() => ReadingScreen(
+                      objectListId: objlist.id.toString(),
+                    ));
               },
               title: 'Show Reading',
             )),

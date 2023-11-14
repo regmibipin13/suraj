@@ -101,7 +101,7 @@ class AddReadingScreen extends StatelessWidget {
                         // labelText: 'Select a table',
                         border: OutlineInputBorder(),
                       ),
-                      value: c.allTypes.first,
+                      value: c.selectedReadingType.value,
                       items: c.allTypes
                           .map((table) => DropdownMenuItem(
                                 value: table,
@@ -109,7 +109,7 @@ class AddReadingScreen extends StatelessWidget {
                               ))
                           .toList(),
                       onChanged: (selectedTable) {
-                        c.setSelectedTable(selectedTable!);
+                        c.selectedReadingType.value = selectedTable!;
                       },
                     ),
                     const SizedBox(

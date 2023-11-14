@@ -7,7 +7,8 @@ import 'package:user_app/utils/custom_text_style.dart';
 import '../utils/colors.dart';
 
 class ReadingScreen extends StatelessWidget {
-  ReadingScreen({super.key});
+  final String objectListId;
+  ReadingScreen({super.key, required this.objectListId});
 
   final c = Get.put(HomeScreenController());
   @override
@@ -34,24 +35,30 @@ class ReadingScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Obx(
-          () => c.loading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  itemCount: c.readingsListDetail.length,
-                  itemBuilder: ((context, index) {
-                    ReadingList rList = c.readingsListDetail[index];
-                    return ObjectListWidget(
-                      content: "asdasd",
-                      color: index % 2 == 0
-                          ? AppColors.primaryColor
-                          : Colors.amber,
-                      readList: rList,
-                    );
-                  }),
-                ),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            c.readingsListDetail.clear();
+            c.getAllReadingList(objectListId);
+          },
+          child: Obx(
+            () => c.loading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    itemCount: c.readingsListDetail.length,
+                    itemBuilder: ((context, index) {
+                      ReadingList rList = c.readingsListDetail[index];
+                      return ObjectListWidget(
+                        content: "asdasd",
+                        color: index % 2 == 0
+                            ? AppColors.primaryColor
+                            : Colors.amber,
+                        readList: rList,
+                      );
+                    }),
+                  ),
+          ),
         ),
       ),
     );

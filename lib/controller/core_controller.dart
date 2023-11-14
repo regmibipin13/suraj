@@ -18,8 +18,10 @@ class CoreController extends GetxController {
   }
 
   Future<void> loadCurrentUser() async {
-    currentUser.value = StorageHelper.getUser();
-    accessToken.value = StorageHelper.getToken();
+    try {
+      currentUser.value = StorageHelper.getUser();
+      accessToken.value = StorageHelper.getToken();
+    } catch (e) {}
   }
 
   bool isUserLoggedIn() {

@@ -54,24 +54,30 @@ class HomeScreen extends StatelessWidget {
       //   ),
       // ),
       body: SafeArea(
-        child: Obx(
-          () => c.loading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  itemCount: c.objectListDetail.length,
-                  itemBuilder: ((context, index) {
-                    ObjectList objList = c.objectListDetail[index];
-                    return ObjectListWidget(
-                      content: "asdasd",
-                      color: index % 2 == 0
-                          ? AppColors.primaryColor
-                          : Colors.amber,
-                      objectList: objList,
-                    );
-                  }),
-                ),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            c.objectListDetail.clear();
+            c.getAllObjectList();
+          },
+          child: Obx(
+            () => c.loading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    itemCount: c.objectListDetail.length,
+                    itemBuilder: ((context, index) {
+                      ObjectList objList = c.objectListDetail[index];
+                      return ObjectListWidget(
+                        content: "asdasd",
+                        color: index % 2 == 0
+                            ? AppColors.primaryColor
+                            : Colors.amber,
+                        objectList: objList,
+                      );
+                    }),
+                  ),
+          ),
         ),
       ),
     );
