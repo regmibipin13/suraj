@@ -12,17 +12,20 @@ import 'package:http/http.dart' as http;
 import '../controller/core_controller.dart';
 
 class ReadingListRepo {
+
   static Future<void> getReadingList({
+
+    required String id,
     required Function(List<ReadingList> readings) onSuccess,
     required Function(String message) onError,
   }) async {
     try {
-      var coreController = Get.find<CoreController>();
-      var userId = coreController.currentUser.value!.id.toString();
+      // var coreController = Get.find<CoreController>();
+      // var userId = coreController.currentUser.value!.id.toString();
       var headers = {
         "Accept": "application/json",
       };
-      var url = Uri.parse('${Api.readList}$userId');
+      var url = Uri.parse('${Api.readList}$id');
       log(url.toString());
       http.Response response = await http.get(
         url,

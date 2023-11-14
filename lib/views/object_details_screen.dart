@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:user_app/controller/dashboard/home_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/utils/colors.dart';
 import 'package:user_app/views/add_reading_screen.dart';
+import 'package:user_app/views/reading_screen.dart';
+import 'package:user_app/widgets/custom/elevated_button.dart';
 
 class ObjectDetailScreen extends StatelessWidget {
-  const ObjectDetailScreen({super.key, required this.objlist});
+  ObjectDetailScreen({super.key, required this.objlist});
 
   final ObjectList objlist;
+  final c = Get.put(HomeScreenController());
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -29,19 +33,6 @@ class ObjectDetailScreen extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () async {
-              Get.to(()=>AddReadingScreen(obj: objlist,));
-            },
-            child: Text(
-              "Add Reading",
-              // style: textTheme.ti!.copyWith(
-              // color: AppColors.accepted,
-              // ),
-            ),
-          ),
-        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -170,6 +161,35 @@ class ObjectDetailScreen extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Flexible(
+                child: CustomElevatedButton(
+              onTap: () {
+                Get.to(() => AddReadingScreen(
+                      obj: objlist,
+                    ));
+              },
+              title: "Add Reading",
+            )),
+            SizedBox(
+              width: 10,
+            ),
+            Flexible(
+                child: CustomElevatedButton(
+              onTap: () {
+                c.readingsListDetail.clear();
+                c.getAllReadingList(objlist.id.toString());
+
+                Get.to(() => ReadingScreen());
+              },
+              title: 'Show Reading',
+            )),
+          ],
         ),
       ),
     );

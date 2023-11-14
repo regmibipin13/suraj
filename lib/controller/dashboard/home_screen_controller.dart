@@ -78,10 +78,11 @@ class HomeScreenController extends GetxController {
   }
 
   RxList<ReadingList> readingsListDetail = <ReadingList>[].obs;
-  getAllReadingList() async {
+  getAllReadingList(String id) async {
     log("home screen controller loaded");
     loading.value = true;
     await ReadingListRepo.getReadingList(
+      id: id,
       onSuccess: (readList) {
         loading.value = false;
         readingsListDetail.addAll(readList);
