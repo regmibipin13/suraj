@@ -21,18 +21,18 @@ class AddReadingScreen extends StatelessWidget {
         // backgroundColor: theme.colorScheme.tertiary,
         elevation: 5,
         shadowColor: AppColors.shadowColor,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () {
+        //     Get.back();
+        //   },
+        //   child: const Padding(
+        //     padding: EdgeInsets.only(left: 20),
+        //     child: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        // ),
         title: Text(
           "Add Reading",
           style: textTheme.titleSmall,
@@ -45,10 +45,15 @@ class AddReadingScreen extends StatelessWidget {
                 c.addReading(obj.id.toString());
               }
             },
-            child: Text(
-              "Save",
-              style: textTheme.titleSmall!.copyWith(),
-            ),
+            child: Obx(() => c.loading.value
+                ? Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: SizedBox(child: CircularProgressIndicator()),
+                  )
+                : Text(
+                    "Save",
+                    style: textTheme.titleSmall!.copyWith(),
+                  )),
           ),
         ],
       ),
@@ -100,7 +105,7 @@ class AddReadingScreen extends StatelessWidget {
                     ),
                     DropdownButtonFormField<ReadingTypes>(
                       decoration: const InputDecoration(
-                        labelText: 'Select a table',
+                        labelText: 'Select a reading',
                         border: OutlineInputBorder(),
                       ),
                       value: c.selectedReadingType.value,
@@ -192,6 +197,9 @@ class AddReadingScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     )
                   ],
                 ),
