@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:user_app/utils/image_path.dart';
 
 import '../controller/dashboard/dash_screen_controller.dart';
 import '../utils/colors.dart';
@@ -40,24 +42,40 @@ class DashScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(
                         top: 9,
                       ),
-                      child: Icon(
-                        Icons.home,
+                      child: SvgPicture.asset(
+                        ImagePath.home,
                         color: c.currentIndex.value == 0
                             ? AppColors.primaryColor
                             : AppColors.unselectedGrey,
+                        height: 20,
                       )),
                   label: "Home",
                 ),
                 BottomNavigationBarItem(
                   icon: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 9,
                       ),
-                      child: Icon(
-                        Icons.person,
+                      child: SvgPicture.asset(
+                        ImagePath.object,
+                        color: c.currentIndex.value == 1
+                            ? AppColors.primaryColor
+                            : AppColors.unselectedGrey,
+                        height: 25,
+                      )),
+                  label: "Object",
+                ),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 9,
+                      ),
+                      child: SvgPicture.asset(
+                        ImagePath.profile,
                         color: c.currentIndex.value == 2
                             ? AppColors.primaryColor
                             : AppColors.unselectedGrey,
+                        height: 25,
                       )),
                   label: "Profile",
                 ),

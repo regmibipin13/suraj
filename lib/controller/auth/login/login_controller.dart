@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import 'package:user_app/controller/core_controller.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/repo/login_repo.dart';
 import 'package:user_app/utils/custom_snackbar.dart';
 import 'package:user_app/utils/storage_keys.dart';
@@ -41,7 +41,7 @@ class LogInController extends GetxController {
           print(json.encode(user.toJson()));
           await box.write(StorageKeys.ACCESS_TOKEN, token.toString());
           Get.put(CoreController()).loadCurrentUser();
-          Get.put(HomeScreenController()).getAllObjectList();
+          Get.put(ObjectScreenController()).getAllObjectList();
           Get.offAllNamed(DashScreen.routeName);
           CustomSnackBar.success(title: "Login", message: "Login Successful");
         },

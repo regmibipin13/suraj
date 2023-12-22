@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:user_app/controller/core_controller.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/utils/pages.dart';
 import 'package:user_app/views/splash_screen.dart';
 
@@ -20,13 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Alwafiq',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       initialBinding: BindingsBuilder(() {
         Get.put(CoreController());
-        Get.put(HomeScreenController());
+        Get.put(ObjectScreenController());
       }),
       initialRoute: SplashScreen.routeName,
       getPages: commonPages,

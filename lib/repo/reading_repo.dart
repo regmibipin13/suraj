@@ -1,18 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:typed_data';
-
-import 'package:get/get.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:user_app/models/reading_types.dart';
 import 'package:user_app/models/readings.dart';
 import 'package:user_app/models/remarks.dart';
 import 'package:user_app/utils/apis.dart';
 
 import 'package:http/http.dart' as http;
-
-import '../controller/core_controller.dart';
 
 class ReadingListRepo {
   static Future<void> getReadingList({

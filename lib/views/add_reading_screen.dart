@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/models/reading_types.dart';
 import 'package:user_app/models/remarks.dart';
@@ -11,7 +11,7 @@ class AddReadingScreen extends StatelessWidget {
   AddReadingScreen({super.key, required this.obj});
   final formKey = GlobalKey<FormState>();
   final ObjectList obj;
-  final c = Get.put(HomeScreenController());
+  final c = Get.put(ObjectScreenController());
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);

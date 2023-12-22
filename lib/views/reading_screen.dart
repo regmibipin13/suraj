@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/models/readings.dart';
 import 'package:user_app/utils/custom_text_style.dart';
 
@@ -10,7 +10,7 @@ class ReadingScreen extends StatelessWidget {
   final String objectListId;
   ReadingScreen({super.key, required this.objectListId});
 
-  final c = Get.put(HomeScreenController());
+  final c = Get.put(ObjectScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

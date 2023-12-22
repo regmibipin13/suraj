@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/utils/colors.dart';
 import 'package:user_app/views/add_reading_screen.dart';
@@ -12,7 +12,7 @@ class ObjectDetailScreen extends StatelessWidget {
   ObjectDetailScreen({super.key, required this.objlist});
 
   final ObjectList objlist;
-  final c = Get.put(HomeScreenController());
+  final c = Get.put(ObjectScreenController());
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -165,7 +165,7 @@ class ObjectDetailScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 13, right: 13, bottom: 16),
         child: Row(
           children: [
             Flexible(
@@ -190,7 +190,7 @@ class ObjectDetailScreen extends StatelessWidget {
               },
               title: "Add Reading",
             )),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Flexible(

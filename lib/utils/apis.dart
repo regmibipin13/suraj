@@ -7,4 +7,5 @@ class Api {
   static const String readTypes = "$baseUrl/app/reading-types";
   static const String remarksTypes = "$baseUrl/app/remarks-types";
   static const String addReadings = "$baseUrl/add-readings";
+  static const String analytics = "$baseUrl/app/analytics?user_id=";
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:user_app/controller/dashboard/home_screen_controller.dart';
+import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/utils/colors.dart';
 import 'package:user_app/utils/custom_text_style.dart';
 import 'package:user_app/views/object_details_screen.dart';
-import 'package:user_app/views/reading_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const String routeName = "/home-screen";
-  HomeScreen({super.key});
+class ObjectScreen extends StatelessWidget {
+  static const String routeName = "/object-screen";
+  ObjectScreen({super.key});
 
-  final c = Get.put(HomeScreenController());
+  final c = Get.put(ObjectScreenController());
 
   @override
   Widget build(BuildContext context) {
