@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class AnalyticsRepo {
   static Future<void> getAnalyticsList({
-    required Function(List<AnalyticsList> analytics) onSuccess,
+    required Function(AnalyticsList analytics) onSuccess,
     required Function(String message) onError,
   }) async {
     try {
@@ -25,10 +25,10 @@ class AnalyticsRepo {
         headers: headers,
       );
       dynamic data = json.decode(response.body);
-      log(data.toString());
+      log("analytics");
+      log(jsonEncode(data));
       if (response.statusCode == 200) {
-        List<AnalyticsList> readList = analyticsListFromJson(data["data"]);
-        print(analyticsListFromJson(data["data"]).toString());
+        AnalyticsList readList = AnalyticsList.fromJson(data);
 
         onSuccess(readList);
       } else {

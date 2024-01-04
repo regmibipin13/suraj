@@ -25,19 +25,13 @@ class HomeScreen extends StatelessWidget {
         ),
         body: RefreshIndicator(
             onRefresh: () async {
-              c.analyticsListDetail.clear();
+              c.analyticsListDetail.value = null;
               c.getAllAnalytics();
             },
-            child: Obx(() => c.loading.value
+            child: Obx(() => c.analyticsListDetail.value == null
                 ? const Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: c.analyticsListDetail.length,
-                    itemBuilder: ((context, index) {
-                      AnalyticsList analyticsList =
-                          c.analyticsListDetail[index];
-                      return AnalyticsWidget(analyticsList: analyticsList);
-                    }),
-                  ))));
+                : AnalyticsWidget(
+                    analyticsList: c.analyticsListDetail.value!))));
   }
 }
 
@@ -76,10 +70,26 @@ class AnalyticsWidget extends StatelessWidget {
             ),
             child: Column(children: [
               Text(
-                "Total Readings submitted",
+                "Total Readings submitted Today",
                 style: CustomTextStyles.f14W600(),
               ),
-              Text("${analyticsList.totalReadingsSubmitted ?? ""}"),
+              Text("${analyticsList.totalReadingsSubmittedToday ?? ""}"),
+            ]),
+          ),
+          const SizedBox(height: 14),
+          Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.lGrey,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(children: [
+              Text(
+                "Total Tasks Today",
+                style: CustomTextStyles.f14W600(),
+              ),
+              Text("${analyticsList.totalTasksToday ?? ""}"),
             ]),
           ),
         ],

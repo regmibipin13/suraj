@@ -53,6 +53,7 @@ dependencies:
   intl_phone_field: ^3.2.0
   dotted_border: ^2.0.0+3
   url_launcher: ^6.2.1
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:

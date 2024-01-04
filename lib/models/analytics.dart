@@ -1,22 +1,34 @@
-List<AnalyticsList> analyticsListFromJson(List<dynamic> analyticsListJson) =>
-    List<AnalyticsList>.from(analyticsListJson
-        .map((analyticsJson) => AnalyticsList.fromJson(analyticsJson)));
+// To parse this JSON data, do
+//
+//     final analyticsList = analyticsListFromJson(jsonString);
+
+import 'dart:convert';
+
+AnalyticsList analyticsListFromJson(String str) =>
+    AnalyticsList.fromJson(json.decode(str));
+
+String analyticsListToJson(AnalyticsList data) => json.encode(data.toJson());
 
 class AnalyticsList {
-  int? totalObjects;
-  int? totalReadingsSubmitted;
+  final int? totalObjects;
+  final int? totalTasksToday;
+  final int? totalReadingsSubmittedToday;
 
-  AnalyticsList({this.totalObjects, this.totalReadingsSubmitted});
+  AnalyticsList({
+    this.totalObjects,
+    this.totalTasksToday,
+    this.totalReadingsSubmittedToday,
+  });
 
-  AnalyticsList.fromJson(Map<String, dynamic> json) {
-    totalObjects = json['total_objects'];
-    totalReadingsSubmitted = json['total_readings_submitted'];
-  }
+  factory AnalyticsList.fromJson(Map<String, dynamic> json) => AnalyticsList(
+        totalObjects: json["total_objects"],
+        totalTasksToday: json["total_tasks_today"],
+        totalReadingsSubmittedToday: json["total_readings_submitted_today"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['total_objects'] = totalObjects;
-    data['total_readings_submitted'] = totalReadingsSubmitted;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "total_objects": totalObjects,
+        "total_tasks_today": totalTasksToday,
+        "total_readings_submitted_today": totalReadingsSubmittedToday,
+      };
 }
