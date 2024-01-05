@@ -25,34 +25,6 @@ class ObjectScreen extends StatelessWidget {
           style: CustomTextStyles.f16W600(color: Colors.white),
         ),
       ),
-      // drawer: Drawer(
-      //   child: Column(
-      //     children: [
-      //       const DrawerHeader(
-      //         decoration: BoxDecoration(
-      //             // color: AppColors.primaryColor,
-      //             ),
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: [Center(child: Text("Alwafiq"))],
-      //         ),
-
-      //         // child: Text('Drawer Header'),
-      //       ),
-      //       ProfileTile(
-      //         onTap: () {
-      //           c.readingsListDetail.clear();
-      //           c.getAllReadingList();
-
-      //           Get.to(() => ReadingScreen());
-      //         },
-      //         leadingIcon: Icons.list_rounded,
-      //         title: "Readings",
-      //         showTrailing: false,
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {

@@ -106,7 +106,7 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
       var distance = Geolocator.distanceBetween(
           position.latitude, position.longitude, lat ?? 0.0, lng ?? 0.0);
 
-      if (distance < 100) {
+      if (distance < 1000) {
         setState(() {
           isAllowed = true;
         });
