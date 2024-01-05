@@ -53,13 +53,13 @@ class Result {
   final OpeningHours? openingHours;
   final List<Photo>? photos;
   final String? placeId;
-  final int? rating;
+  final dynamic rating;
   final String? reference;
   final List<Review>? reviews;
   final List<String>? types;
   final String? url;
-  final int? userRatingsTotal;
-  final int? utcOffset;
+  final dynamic userRatingsTotal;
+  final dynamic utcOffset;
   final String? vicinity;
 
   Result({
@@ -242,7 +242,7 @@ class CurrentOpeningHoursPeriod {
 
 class PurpleClose {
   final DateTime? date;
-  final int? day;
+  final dynamic day;
   final String? time;
 
   PurpleClose({
@@ -389,7 +389,7 @@ class OpeningHoursPeriod {
 }
 
 class FluffyClose {
-  final int? day;
+  final dynamic day;
   final String? time;
 
   FluffyClose({
@@ -409,10 +409,10 @@ class FluffyClose {
 }
 
 class Photo {
-  final int? height;
+  final dynamic height;
   final List<String>? htmlAttributions;
   final String? photoReference;
-  final int? width;
+  final dynamic width;
 
   Photo({
     this.height,
@@ -446,10 +446,10 @@ class Review {
   final String? language;
   final String? originalLanguage;
   final String? profilePhotoUrl;
-  final int? rating;
+  final dynamic rating;
   final String? relativeTimeDescription;
   final String? text;
-  final int? time;
+  final dynamic time;
   final bool? translated;
 
   Review({
