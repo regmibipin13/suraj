@@ -23,6 +23,7 @@ class ObjectList {
   String? googleAddress;
   String? monthWiseRemarks;
   String? batch;
+  String? schedules;
   String? createdAt;
   String? updatedAt;
 
@@ -47,6 +48,7 @@ class ObjectList {
       this.googleAddress,
       this.monthWiseRemarks,
       this.batch,
+      this.schedules,
       this.createdAt,
       this.updatedAt});
 
@@ -71,6 +73,7 @@ class ObjectList {
     googleAddress = json['google_address'];
     monthWiseRemarks = json['month_wise_remarks'];
     batch = json['batch'];
+    schedules = json['schedules'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -97,6 +100,7 @@ class ObjectList {
     data['google_address'] = googleAddress;
     data['month_wise_remarks'] = monthWiseRemarks;
     data['batch'] = batch;
+    data['schedules'] = schedules;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

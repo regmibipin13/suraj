@@ -75,6 +75,7 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
 
   void checkLocation() async {
     try {
+      log("Enters Function");
       Position position = await _determinePosition();
       var data = await http.get(
           Uri.parse(
@@ -87,7 +88,6 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
 
       GooglePlacesResponse googlePlacesResponse =
           googlePlacesResponseFromJson(data.body);
-
       var placeId = googlePlacesResponse.candidates?[0].placeId;
 
       var data2 = await http.get(
@@ -98,13 +98,11 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST"
           });
-
       GooglePlaceDetailResponse googlePlaceDetailResponse =
           googlePlaceDetailResponseFromJson(data2.body);
 
       var lat = googlePlaceDetailResponse.result?.geometry?.location?.lat;
       var lng = googlePlaceDetailResponse.result?.geometry?.location?.lng;
-
       var distance = Geolocator.distanceBetween(
           position.latitude, position.longitude, lat ?? 0.0, lng ?? 0.0);
 
@@ -118,7 +116,7 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
         });
       }
     } catch (e) {
-      log(e.toString());
+      print(e.toString());
     }
   }
 

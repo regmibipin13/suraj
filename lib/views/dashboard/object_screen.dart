@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:user_app/controller/dashboard/object_screen_controller.dart';
 import 'package:user_app/models/object_list.dart';
 import 'package:user_app/utils/colors.dart';
@@ -154,6 +155,23 @@ class ObjectListWidget extends StatelessWidget {
                         ),
                         Text(
                           'Invoice Type: ${objectList.invoiceType ?? ""}',
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Latest Visit Date: ${objectList.lastVisitDate ?? ""}',
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          width: 300,
+                          child: Text(
+                            'Schedules: ${objectList.schedules ?? ""}',
+                            overflow: TextOverflow.visible,
+                            softWrap: true,
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
