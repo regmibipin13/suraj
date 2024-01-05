@@ -105,8 +105,8 @@ class _ObjectDetailScreenState extends State<ObjectDetailScreen> {
       var lng = googlePlaceDetailResponse.result?.geometry?.location?.lng;
       var distance = Geolocator.distanceBetween(
           position.latitude, position.longitude, lat ?? 0.0, lng ?? 0.0);
-
-      if (distance < 1000) {
+      log(distance.toString());
+      if (distance < 3000) {
         setState(() {
           isAllowed = true;
         });
